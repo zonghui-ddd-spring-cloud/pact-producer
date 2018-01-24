@@ -21,7 +21,7 @@ import static com.github.restdriver.clientdriver.RestClientDriver.giveResponse;
 import static com.github.restdriver.clientdriver.RestClientDriver.onRequestTo;
 
 @RunWith(PactRunner.class)
-@Provider("review_service")
+@Provider("producer_service")
 @PactFolder("src/test/resources")
 public class ReviewServiceTest {
     @ClassRule
