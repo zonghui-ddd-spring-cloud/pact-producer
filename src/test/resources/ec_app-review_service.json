@@ -1,0 +1,150 @@
+{
+    "provider": {
+        "name": "review_service"
+    },
+    "consumer": {
+        "name": "ec_app"
+    },
+    "interactions": [
+        {
+            "description": "A request for products",
+            "request": {
+                "method": "GET",
+                "path": "/products"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json;charset=UTF-8"
+                },
+                "body": [
+                    {
+                        "productId": "123456",
+                        "name": "iphone \u624b\u673a"
+                    }
+                ],
+                "matchingRules": {
+                    "body": {
+                        "$": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].productId": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "^[0-9][0-9][0-9][0-9][0-9][0-9]$"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].name": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": ".+"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "The products in Review service are ready"
+                }
+            ]
+        },
+        {
+            "description": "A request for ratings for a product",
+            "request": {
+                "method": "GET",
+                "path": "/ratings",
+                "query": {
+                    "productId": [
+                        "123"
+                    ],
+                    "userName": [
+                        "ben"
+                    ]
+                }
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json;charset=UTF-8"
+                },
+                "body": [
+                    {
+                        "productId": "123456",
+                        "rating": "5",
+                        "userName": "ben"
+                    }
+                ],
+                "matchingRules": {
+                    "body": {
+                        "$": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].productId": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "^[0-9][0-9][0-9][0-9][0-9][0-9]$"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].userName": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "[a-z]+"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].rating": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "^[0-5]$"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "The ratings in Review service are ready",
+                    "params": {
+                        "productId": "123",
+                        "userName": "ben"
+                    }
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.0"
+        }
+    }
+}
