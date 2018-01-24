@@ -7,6 +7,61 @@
     },
     "interactions": [
         {
+            "description": "A request for products",
+            "request": {
+                "method": "GET",
+                "path": "/products"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/json;charset=UTF-8"
+                },
+                "body": [
+                    {
+                        "productId": "123456",
+                        "name": "iphone \u624b\u673a"
+                    }
+                ],
+                "matchingRules": {
+                    "body": {
+                        "$": {
+                            "matchers": [
+                                {
+                                    "match": "type",
+                                    "min": 0
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].productId": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": "^[0-9][0-9][0-9][0-9][0-9][0-9]$"
+                                }
+                            ],
+                            "combine": "AND"
+                        },
+                        "$[*].name": {
+                            "matchers": [
+                                {
+                                    "match": "regex",
+                                    "regex": ".+"
+                                }
+                            ],
+                            "combine": "AND"
+                        }
+                    }
+                }
+            },
+            "providerStates": [
+                {
+                    "name": "The products in Review service are ready"
+                }
+            ]
+        },
+        {
             "description": "A request for ratings for a product",
             "request": {
                 "method": "GET",
@@ -80,61 +135,6 @@
                         "productId": "123",
                         "userName": "ben"
                     }
-                }
-            ]
-        },
-        {
-            "description": "A request for products",
-            "request": {
-                "method": "GET",
-                "path": "/products"
-            },
-            "response": {
-                "status": 200,
-                "headers": {
-                    "Content-Type": "application/json;charset=UTF-8"
-                },
-                "body": [
-                    {
-                        "productId": "123456",
-                        "name": "iphone \u624b\u673a"
-                    }
-                ],
-                "matchingRules": {
-                    "body": {
-                        "$": {
-                            "matchers": [
-                                {
-                                    "match": "type",
-                                    "min": 0
-                                }
-                            ],
-                            "combine": "AND"
-                        },
-                        "$[*].productId": {
-                            "matchers": [
-                                {
-                                    "match": "regex",
-                                    "regex": "^[0-9][0-9][0-9][0-9][0-9][0-9]$"
-                                }
-                            ],
-                            "combine": "AND"
-                        },
-                        "$[*].name": {
-                            "matchers": [
-                                {
-                                    "match": "regex",
-                                    "regex": ".+"
-                                }
-                            ],
-                            "combine": "AND"
-                        }
-                    }
-                }
-            },
-            "providerStates": [
-                {
-                    "name": "The products in Review service are ready"
                 }
             ]
         }

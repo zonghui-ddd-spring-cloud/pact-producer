@@ -15,7 +15,7 @@ public class ProductService {
 
     public List<Product> getProducts() {
         List<Product> result = new ArrayList<Product>();
-        result.add(new Product(123333, "ben", 20));
+        result.add(new Product(123456, "ben", 20));
         return result;
     }
 }
