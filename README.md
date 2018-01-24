@@ -6,7 +6,7 @@ The repo "pact-ec-review-service" is the sample project to show how to use the p
 
 # How to Run It
 
-0. Generate the pact (i.e. contract) of the sample application according to the README.md in the repo ["pact-ec-app"](https://github.com/wubin28/pact-ec-app).
-1. Git clone the ["pact-ec-review-service"](https://github.com/wubin28/pact-ec-review-service) repo.
+0. Generate the pact (i.e. contract) of the sample application according to the README.md in the repo ["consumer-app"](https://github.com/zonghui-ddd-spring-cloud/pact-consumer).
+1. Git clone the ["product-service"](https://github.com/zonghui-ddd-spring-cloud/pact-producer) repo.
 3. Copy the pact file generated in the consumer side in step 0 to the folder "src/test/resources" of the provider project folder.
 4. Run command "./gradlew clean test"
