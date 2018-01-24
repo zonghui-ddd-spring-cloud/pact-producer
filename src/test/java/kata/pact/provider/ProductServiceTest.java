@@ -23,7 +23,7 @@ import static com.github.restdriver.clientdriver.RestClientDriver.onRequestTo;
 @RunWith(PactRunner.class)
 @Provider("producer_service")
 @PactFolder("src/test/resources")
-public class ReviewServiceTest {
+public class ProductServiceTest {
     @ClassRule
     public static final ClientDriverRule embeddedService = new ClientDriverRule(8332);
 
@@ -35,8 +35,8 @@ public class ReviewServiceTest {
         // Get parameters from the pact
         // params.forEach((key, value) -> System.out.println(key + ":" + value));
 
-        ReviewService reviewService = new ReviewService();
-        final List<Rating> ratings = reviewService.getRatings(params.get("productId").toString(), params.get("userName").toString());
+        ProductService productService = new ProductService();
+        final List<Rating> ratings = productService.getRatings(params.get("productId").toString(), params.get("userName").toString());
         ObjectMapper objectMapper = new ObjectMapper();
         //Set pretty printing of json
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -49,8 +49,8 @@ public class ReviewServiceTest {
 
     @State("The products in Review service are ready")
     public void shouldGetProducts(Map<String, Object> params) throws JsonProcessingException {
-        ReviewService reviewService = new ReviewService();
-        final List<Product> ratings = reviewService.getProducts();
+        ProductService productService = new ProductService();
+        final List<Product> ratings = productService.getProducts();
         ObjectMapper objectMapper = new ObjectMapper();
         //Set pretty printing of json
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);

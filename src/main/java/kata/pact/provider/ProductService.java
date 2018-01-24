@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewService {
+public class ProductService {
     public List<Rating> getRatings(String id, String name) {
         // use id and name to get the ratings from the backend
 
